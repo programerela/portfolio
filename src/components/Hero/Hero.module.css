@@ -1,0 +1,124 @@
+.hero {
+  height: 100vh;
+  width: 100%;
+  background: radial-gradient(circle at center, #fdfdfd, var(--bg-color));
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 2rem;
+  overflow: hidden;
+}
+
+/* More visible soft floating blurred red shapes behind */
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 25%;
+  left: 5%;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(255, 60, 60, 0.45), transparent 65%);
+  filter: blur(120px);
+  animation: float 15s ease-in-out infinite;
+  z-index: 1;
+}
+
+.hero::after {
+  content: '';
+  position: absolute;
+  top: 55%;
+  right: 8%;
+  width: 450px;
+  height: 450px;
+  background: radial-gradient(circle, rgba(255, 100, 100, 0.38), transparent 75%);
+  filter: blur(140px);
+  animation: float2 20s ease-in-out infinite;
+  z-index: 1;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0) translateX(0);
+  }
+  50% {
+    transform: translateY(20px) translateX(10px);
+  }
+}
+
+@keyframes float2 {
+  0%, 100% {
+    transform: translateY(0) translateX(0);
+  }
+  50% {
+    transform: translateY(-15px) translateX(-10px);
+  }
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-bottom: 4rem;
+  flex-wrap: wrap;
+  z-index: 2; /* above the blurred shapes */
+}
+
+.leftAccent {
+  width: 6px;
+  height: 200px;
+  background-color: var(--primary-color);
+  flex-shrink: 0;
+  z-index: 2;
+}
+
+.text {
+  flex: 1;
+  z-index: 2;
+}
+
+.title {
+  font-size: 5rem;
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--text-color);
+  max-width: 600px;
+  z-index: 2;
+}
+
+.line {
+  display: inline-block;
+}
+
+.glow {
+  display: inline-block;
+  transition: text-shadow 0.4s ease;
+  cursor: default;
+  z-index: 2;
+}
+
+.glow:hover {
+  text-shadow:
+    0 0 6px rgba(255, 50, 50, 0.5),
+    0 0 12px rgba(255, 50, 50, 0.3);
+}
+
+.subtitle {
+  font-size: 1.25rem;
+  margin-top: 1rem;
+  color: #444;
+  max-width: 500px;
+  z-index: 2;
+}
+
+.scroll {
+  position: absolute;
+  bottom: 2rem;
+  left: 2rem;
+  font-size: 1rem;
+  color: #aaa;
+  letter-spacing: 0.1em;
+  z-index: 2;
+}

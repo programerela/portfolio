@@ -1,0 +1,9 @@
+:root {
+  --bg-color: #ffffff;
+  --text-color: #111111;
+  --primary-color: #7b0f17;
+  --accent-color: #eaeaea;
+  --font-main: 'Helvetica Neue', sans-serif;
+
+  --about-bg: #ffffff; /* default white for About section */
+}

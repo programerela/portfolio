@@ -1,0 +1,79 @@
+.projects {
+  position: relative;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+  font-family: 'Helvetica Neue', sans-serif;
+}
+
+.slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.5s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 0;
+}
+
+.slide:has(.overlay:not([style*="opacity: 0"])) {
+  visibility: visible;
+}
+
+.overlay {
+  background: rgba(0, 0, 0, 0.65);
+  color: #f5f5f5;
+  padding: 3rem 2rem;
+  max-width: 720px;
+  text-align: center;
+  border-radius: 20px;
+  transform: translateY(50px);
+  opacity: 0;
+  transition: all 0.6s ease;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.overlay h2 {
+  font-size: 2.8rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.overlay p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+}
+
+.buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.buttons a {
+  padding: 0.9rem 1.8rem;
+  background-color: white;
+  color: black;
+  text-decoration: none;
+  font-weight: 600;
+  border-radius: 100px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
+}
+
+.buttons a:hover {
+  background-color: black;
+  color: white;
+}
