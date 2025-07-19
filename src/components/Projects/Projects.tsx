@@ -15,20 +15,20 @@ const projects = [
   {
     title: "Mielle Studio",
     description: "Frontend for a photography studio with booking features.",
-    image: "/assets/projects/project2.jpg",
+    image: "/assets/projects/project2.png",
     github: "https://github.com/programerela/MielleFE",
-  },
-  {
-    title: "EllsSpells Forum",
-    description: "Beauty and health forum with user profiles and discussions.",
-    image: "/assets/projects/project3.jpg",
-    github: "https://github.com/programerela/EllsSpells",
   },
   {
     title: "Maison Unique",
     description: "Website for a furniture store with product listings.",
-    image: "/assets/projects/project4.jpg",
+    image: "/assets/projects/project3.png",
     github: "https://github.com/programerela/MaisonUnique",
+  },
+  {
+    title: "Schoolio",
+    description: "Frontend for a school management system with student and teacher portals.",
+    image: "/assets/projects/project4.png",
+    github: "https://github.com/mirnesacalakovic/Schoolio_Hackaton",
   },
 ];
 
@@ -37,28 +37,33 @@ const Projects = () => {
   const slidesRef = useRef<HTMLDivElement[]>([]);
   const textRefs = useRef<HTMLDivElement[]>([]);
 
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: containerRef.current,
-          start: "top top",
-          end: `+=${projects.length * 200}vh`, // Increase scroll distance for slower scroll
-          scrub: true,
-          pin: true,
-        },
-      });
+ useEffect(() => {
+  const ctx = gsap.context(() => {
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: containerRef.current,
+        start: "top top",
+        end: `+=${projects.length * 200}vh`,
+        scrub: true,
+        pin: true,
+      },
+    });
 
-      projects.forEach((_, i) => {
-        const slide = slidesRef.current[i];
-        const text = textRefs.current[i];
+    // Make first slide & overlay visible immediately
+    gsap.set(slidesRef.current[0], { autoAlpha: 1 });
+    gsap.set(textRefs.current[0], { y: 0, autoAlpha: 1 });
 
+    projects.forEach((_, i) => {
+      const slide = slidesRef.current[i];
+      const text = textRefs.current[i];
+
+      if (i !== 0) {
         // Animate slide in
         tl.to(
           slide,
           {
             autoAlpha: 1,
-            duration: 0.6,
+            duration: 1.2,
             ease: "power2.out",
           },
           `slide-${i}`
@@ -70,42 +75,44 @@ const Projects = () => {
           {
             y: 0,
             autoAlpha: 1,
-            duration: 0.6,
+            duration: 1.2,
             ease: "power2.out",
           },
           `slide-${i}`
         );
+      }
 
-        // Hold longer
-        tl.to({}, { duration: 2.5 }); // Increase hold duration
+      // Hold
+      tl.to({}, { duration: 2.5 });
 
-        // Animate out (unless it's the last one)
-        if (i !== projects.length - 1) {
-          tl.to(
-            text,
-            {
-              y: -50,
-              autoAlpha: 0,
-              duration: 0.6,
-              ease: "power2.in",
-            },
-            `slide-out-${i}`
-          );
-          tl.to(
-            slide,
-            {
-              autoAlpha: 0,
-              duration: 0.6,
-              ease: "power2.in",
-            },
-            `slide-out-${i}`
-          );
-        }
-      });
-    }, containerRef);
+      // Animate out (unless it's the last one)
+      if (i !== projects.length - 1) {
+        tl.to(
+          text,
+          {
+            y: -50,
+            autoAlpha: 0,
+            duration: 1.2,
+            ease: "power2.in",
+          },
+          `slide-out-${i}`
+        );
+        tl.to(
+          slide,
+          {
+            autoAlpha: 0,
+            duration: 1.2,
+            ease: "power2.in",
+          },
+          `slide-out-${i}`
+        );
+      }
+    });
+  }, containerRef);
 
-    return () => ctx.revert();
-  }, []);
+  return () => ctx.revert();
+}, []);
+
 
   return (
     <section className={styles.projects} ref={containerRef} id="projects">

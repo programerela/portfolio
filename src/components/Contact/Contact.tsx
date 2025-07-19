@@ -9,10 +9,11 @@ gsap.registerPlugin(ScrollTrigger);
 const Contact: React.FC = () => {
   const formRef = useRef<HTMLFormElement>(null);
   const sectionRef = useRef<HTMLElement>(null);
-  const [success, setSuccess] = useState(false);
+  const [message, setMessage] = useState<{ type: "success" | "error"; text: string } | null>(null);
 
   const sendEmail = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    console.log("Public key:", import.meta.env.VITE_EMAILJS_PUBLIC_KEY);
 
     if (!formRef.current) return;
 
@@ -25,12 +26,12 @@ const Contact: React.FC = () => {
       )
       .then(
         () => {
-          setSuccess(true);
+          setMessage({ type: "success", text: "Message sent successfully!" });
           formRef.current?.reset();
         },
         (error) => {
           console.error("Email send error:", error);
-          setSuccess(false);
+          setMessage({ type: "error", text: "Something went wrong. Please try again." });
         }
       );
   };
@@ -62,7 +63,12 @@ const Contact: React.FC = () => {
             required
           ></textarea>
           <button type="submit">Send Message</button>
-          {success && <p className="success-msg">Message sent successfully!</p>}
+
+          {message && (
+            <p className={`form-msg ${message.type === "success" ? "success" : "error"}`}>
+              {message.text}
+            </p>
+          )}
         </form>
       </div>
     </section>

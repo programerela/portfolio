@@ -14,34 +14,34 @@ const About = () => {
       const timeline = gsap.timeline({
         scrollTrigger: {
           trigger: sectionRef.current,
-          start: "top 80%",
-          end: "bottom 20%",
-          scrub: true,
-          toggleActions: "play reverse play reverse",
+          start: "top 90%",
+          end: "bottom 15%",
+          scrub: false,
+          toggleActions: "play none none reverse",
           invalidateOnRefresh: true,
-          markers: false, // Set true for debugging
+          markers: false,
         },
       });
 
-      // Animate photo sliding in from right
+      // Animate photo
       timeline.fromTo(
         `.${styles.photo}`,
         { opacity: 0, x: 100 },
-        { opacity: 1, x: 0, duration: 1 }
+        { opacity: 1, x: 0, duration: 0.8, ease: "power2.out" }
       );
 
-      // Animate paragraphs sliding in from left, staggered
+      // Animate paragraphs
       timeline.fromTo(
         paragraphsRef.current,
         { opacity: 0, x: -50 },
         {
           opacity: 1,
           x: 0,
-          duration: 1,
-          stagger: 0.3,
+          duration: 0.8,
+          stagger: 0.2,
           ease: "power3.out",
         },
-        "<" // start at same time as photo animation ends
+        "<"
       );
     }, sectionRef);
 
@@ -69,7 +69,7 @@ const About = () => {
         ))}
       </div>
       <div className={styles.photo}>
-        <img src="/your-photo.jpg" alt="Ela portrait" />
+        <img src="../../assets/facecard.jpg" alt="Ela portrait" />
       </div>
     </section>
   );

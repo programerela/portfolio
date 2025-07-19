@@ -5,7 +5,6 @@
   justify-content: space-between;
   padding: 8rem 6vw;
   min-height: 100vh;
-  background-color: #fff;
   gap: 4rem;
 }
 
@@ -28,6 +27,7 @@
 }
 
 .photo {
+  margin-top: 5rem;
   flex: 0.9;
   display: flex;
   justify-content: center;
@@ -36,8 +36,8 @@
 
 .photo img {
   width: 100%;
-  max-width: 400px;
-  border-radius: 20px;
+  max-width: 350px;
+  border-radius: 10px;
   object-fit: cover;
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
 }

@@ -32,6 +32,8 @@
 .overlay {
   color: #fff;
   padding: 2rem;
+  background-color: #00000062;
+  border-radius: 5px;
   max-width: 700px;
   text-align: center;
   transform: translateY(50px);

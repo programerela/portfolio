@@ -35,7 +35,7 @@ const TechSlider = () => {
   const resumeScroll = () => tweenRef.current?.play();
 
   return (
-    <section className={styles.wrapper} ref={wrapperRef} id="stack">
+    <section className={styles.wrapper} ref={wrapperRef} id="skills">
       <h3 className={styles.title}>Skills</h3>
       <div
         className={styles.slider}

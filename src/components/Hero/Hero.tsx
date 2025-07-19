@@ -44,7 +44,7 @@ const Hero = () => {
   }, [])
 
   return (
-    <section className={styles.hero} ref={heroRef}>
+    <section className={styles.hero} ref={heroRef} id="hero">
       <div className={styles.container}>
         <div className={styles.leftAccent}></div>
         <div className={styles.text}>

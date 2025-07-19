@@ -5,7 +5,7 @@ const Footer = () => {
   return (
     <footer className={styles.footer}>
       <div className={styles.inner}>
-        <p className={styles.name}>Curic Ela</p>
+        <p className={styles.name}>Ela Curic</p>
         <p className={styles.email}>
           <a href="mailto:curicela@gmail.com">curicela@gmail.com</a>
         </p>
@@ -24,7 +24,7 @@ const Footer = () => {
           </a>
         </div>
         <p className={styles.signature}>
-          Designed & coded by Ela © {new Date().getFullYear()}
+          Designed & coded by ell © 2025
         </p>
       </div>
     </footer>

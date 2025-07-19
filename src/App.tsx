@@ -8,8 +8,27 @@ import Projects from "./components/Projects/Projects";
 import About from "./components/About/About";
 
 function App() {
-  useEffect(() => {
+useEffect(() => {
     window.scrollTo(0, 0);
+
+    const handleAnchorClick = (e: MouseEvent) => {
+      const target = e.target as HTMLAnchorElement;
+      if (
+        target.tagName === "A" &&
+        target.getAttribute("href")?.startsWith("#")
+      ) {
+        const id = target.getAttribute("href")!.substring(1);
+        const section = document.getElementById(id);
+        if (section) {
+          e.preventDefault();
+          section.scrollIntoView({ behavior: "smooth" });
+          history.pushState(null, "", `#${id}`); // update hash without jumping
+        }
+      }
+    };
+
+    document.addEventListener("click", handleAnchorClick);
+    return () => document.removeEventListener("click", handleAnchorClick);
   }, []);
 
   return (
