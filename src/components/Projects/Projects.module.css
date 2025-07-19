@@ -77,3 +77,18 @@
   background-color: #fff;
   color: #000;
 }
+@media (max-width: 767px) {
+  .projects {
+    height: auto !important;     /* allow height to grow */
+    overflow: visible !important; /* allow scrolling */
+    padding-bottom: 2rem;        /* optional, some breathing space */
+  }
+
+  .slide {
+    position: relative !important;
+    height: 60vh !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    margin-bottom: 1.5rem; /* spacing between slides */
+  }
+}

@@ -37,81 +37,73 @@ const Projects = () => {
   const slidesRef = useRef<HTMLDivElement[]>([]);
   const textRefs = useRef<HTMLDivElement[]>([]);
 
- useEffect(() => {
+useEffect(() => {
   const ctx = gsap.context(() => {
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: containerRef.current,
-        start: "top top",
-        end: `+=${projects.length * 200}vh`,
-        scrub: true,
-        pin: true,
+    ScrollTrigger.matchMedia({
+      // Desktop & tablets: keep original pinned parallax
+      "(min-width: 768px)": () => {
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: containerRef.current,
+            start: "top top",
+            end: `+=${projects.length * 200}vh`,
+            scrub: true,
+            pin: true,
+          },
+        });
+
+        gsap.set(slidesRef.current[0], { autoAlpha: 1 });
+        gsap.set(textRefs.current[0], { y: 0, autoAlpha: 1 });
+
+        projects.forEach((_, i) => {
+          const slide = slidesRef.current[i];
+          const text = textRefs.current[i];
+          if (!slide || !text) return;
+
+          if (i !== 0) {
+            tl.to(slide, { autoAlpha: 1, duration: 1.2, ease: "power2.out" }, `slide-${i}`);
+            tl.to(text, { y: 0, autoAlpha: 1, duration: 1.2, ease: "power2.out" }, `slide-${i}`);
+          }
+
+          tl.to({}, { duration: 2.5 });
+
+          if (i !== projects.length - 1) {
+            tl.to(text, { y: -50, autoAlpha: 0, duration: 1.2, ease: "power2.in" }, `slide-out-${i}`);
+            tl.to(slide, { autoAlpha: 0, duration: 1.2, ease: "power2.in" }, `slide-out-${i}`);
+          }
+        });
       },
-    });
 
-    // Make first slide & overlay visible immediately
-    gsap.set(slidesRef.current[0], { autoAlpha: 1 });
-    gsap.set(textRefs.current[0], { y: 0, autoAlpha: 1 });
+      // Mobile: no pinning, slides stack vertically and fade in on scroll
+      "(max-width: 767px)": () => {
+        projects.forEach((_, i) => {
+          const slide = slidesRef.current[i];
+          const text = textRefs.current[i];
+          if (!slide || !text) return;
 
-    projects.forEach((_, i) => {
-      const slide = slidesRef.current[i];
-      const text = textRefs.current[i];
+          gsap.set(slide, { autoAlpha: 0, y: 30 });
+          gsap.set(text, { autoAlpha: 0, y: 30 });
 
-      if (i !== 0) {
-        // Animate slide in
-        tl.to(
-          slide,
-          {
-            autoAlpha: 1,
-            duration: 1.2,
-            ease: "power2.out",
-          },
-          `slide-${i}`
-        );
-
-        // Animate text in
-        tl.to(
-          text,
-          {
-            y: 0,
-            autoAlpha: 1,
-            duration: 1.2,
-            ease: "power2.out",
-          },
-          `slide-${i}`
-        );
-      }
-
-      // Hold
-      tl.to({}, { duration: 2.5 });
-
-      // Animate out (unless it's the last one)
-      if (i !== projects.length - 1) {
-        tl.to(
-          text,
-          {
-            y: -50,
-            autoAlpha: 0,
-            duration: 1.2,
-            ease: "power2.in",
-          },
-          `slide-out-${i}`
-        );
-        tl.to(
-          slide,
-          {
-            autoAlpha: 0,
-            duration: 1.2,
-            ease: "power2.in",
-          },
-          `slide-out-${i}`
-        );
-      }
+          ScrollTrigger.create({
+            trigger: slide,
+            start: "top 80%",
+            onEnter: () => {
+              gsap.to(slide, { autoAlpha: 1, y: 0, duration: 0.6, ease: "power2.out" });
+              gsap.to(text, { autoAlpha: 1, y: 0, duration: 0.6, ease: "power2.out" });
+            },
+            onLeaveBack: () => {
+              gsap.to(slide, { autoAlpha: 0, y: 30, duration: 0.6, ease: "power2.in" });
+              gsap.to(text, { autoAlpha: 0, y: 30, duration: 0.6, ease: "power2.in" });
+            },
+          });
+        });
+      },
     });
   }, containerRef);
 
   return () => ctx.revert();
 }, []);
+
 
 
   return (
