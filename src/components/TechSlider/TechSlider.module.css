@@ -1,22 +1,20 @@
 .wrapper {
-  padding: 4rem 2rem;
+  padding: 2rem 0;
   background-color: var(--accent-color);
+  overflow: hidden;
+  position: relative;
 }
 
-.grid {
-  /* display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-  grid-auto-rows: 120px; */
+.slider {
   display: flex;
-  flex-direction: row;
-  justify-items: center;
-  align-items: center;
-  height: 10rem;
+  flex-wrap: nowrap;
+  width: max-content;
 }
 
 .card {
-  width: 100%;
-  height: 15rem;
+  flex: 0 0 auto;
+  width: 150px;
+  height: 150px;
   background-color: #e0e0e0;
   display: flex;
   align-items: center;
@@ -25,8 +23,8 @@
   overflow: hidden;
   transition: all 0.3s ease;
   padding: 1rem;
-  border-radius: 2px;
   cursor: pointer;
+  margin: 0;
 }
 
 .card:hover {
@@ -61,3 +59,11 @@
   opacity: 1;
   transform: translateY(0);
 }
+
+.wrapper h3 {
+  color: #fff;
+  padding: 1rem 2rem;
+  margin-bottom: 2rem;
+  font-size: 1.5rem;
+  font-weight: 600;
+} 

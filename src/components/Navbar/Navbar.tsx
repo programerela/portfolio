@@ -61,7 +61,7 @@ const Navbar: React.FC = () => {
     <nav ref={navbarRef} className={`${styles.navbar} ${isSticky ? styles.sticky : ""}`}>
       <div className={styles.navContent}>
         <div className={styles.logo}>
-          <a href="#hero">Ela.dev</a>
+          <a href="#hero"><img src="../../../assets/logo_prvw.png"/></a>
         </div>
         <ul className={styles.links}>
           <li><a href="#about" className={styles.navLink}>About</a></li>

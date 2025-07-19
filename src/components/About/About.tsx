@@ -52,13 +52,20 @@ const About = () => {
     <section className={styles.about} ref={sectionRef} id="about">
       <div className={styles.text}>
         <h2>About Me</h2>
-        {[ 
+        {[
           "I'm a frontend-focused software engineer based in Serbia, passionate about clean designs, smooth interactions, and pixel-perfect user experiences. I bring a creative flair and an unmatched attention to detail to everything I build.",
           "While I love designing and coding, my long-term vision is project management - combining technical depth with strong people skills. I thrive in roles that balance engineering with team coordination and strategy.",
-          "My strongest stack includes React and TypeScript, but I've worked with a wide range of technologies including .NET, Python, C++, Node.js, and microservice architecture. I'm adaptable, fast-learning, and always down to dive into something new.",
-          "Right now, I'm looking for opportunities to grow - whether that's on a front-end team, in a full-stack environment, or supporting product teams with cross-functional collaboration."
+          "I'm most confident with React and TypeScript, but I've worked with a wide range of technologies including .NET, Python, C++, Node.js, and microservice architecture. I'm adaptable, fast-learning, and always down to dive into something new.",
+          "Right now, I'm looking for opportunities to grow - whether that's on a front-end team, in a full-stack environment, or supporting product teams with cross-functional collaboration.",
         ].map((text, i) => (
-          <p key={i} ref={(el) => { paragraphsRef.current[i] = el; }}>{text}</p>
+          <p
+            key={i}
+            ref={(el) => {
+              paragraphsRef.current[i] = el;
+            }}
+          >
+            {text}
+          </p>
         ))}
       </div>
       <div className={styles.photo}>

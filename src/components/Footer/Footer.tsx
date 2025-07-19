@@ -1,4 +1,5 @@
-import styles from './Footer.module.css'
+import styles from "./Footer.module.css";
+import { FaGithub, FaLinkedin, FaFileDownload } from "react-icons/fa";
 
 const Footer = () => {
   return (
@@ -9,18 +10,25 @@ const Footer = () => {
           <a href="mailto:curicela@gmail.com">curicela@gmail.com</a>
         </p>
         <div className={styles.socials}>
-          <a href="https://github.com/yourusername" target="_blank" rel="noopener noreferrer">
-            GitHub
+          <a href="https://github.com/programerela" target="_blank" rel="noreferrer">
+            <FaGithub /> GitHub
           </a>
-          <a href="https://linkedin.com/in/yourusername" target="_blank" rel="noopener noreferrer">
-            LinkedIn
+          <a href="../../assets/cv_eng.pdf" download target="_blank" rel="noreferrer">
+            <FaFileDownload /> CV (EN)
           </a>
-          {/* Add more if you like */}
+          <a href="../../assets/cv_rs.pdf" download target="_blank" rel="noreferrer">
+            <FaFileDownload /> CV (RS)
+          </a>
+          <a href="https://linkedin.com/in/ela-curić-b39674241" target="_blank" rel="noreferrer">
+            <FaLinkedin /> LinkedIn
+          </a>
         </div>
-        <p className={styles.signature}>Designed & coded by Ela © {new Date().getFullYear()}</p>
+        <p className={styles.signature}>
+          Designed & coded by Ela © {new Date().getFullYear()}
+        </p>
       </div>
     </footer>
-  )
-}
+  );
+};
 
-export default Footer
+export default Footer;

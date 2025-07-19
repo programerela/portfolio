@@ -26,10 +26,9 @@
   margin: 0 auto;
 }
 
-.logo {
-  font-weight: 700;
-  font-size: 1.5rem;
-  color: var(--primary-color);
+img {
+  width: 3.2rem;
+  height: 2.5rem;
 }
 
 .links {

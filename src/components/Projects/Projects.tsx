@@ -7,32 +7,28 @@ gsap.registerPlugin(ScrollTrigger);
 
 const projects = [
   {
-    title: "E-commerce Storefront",
-    description: "A full-stack store with cart, checkout, and admin dashboard.",
-    image: "/projects/project1.jpg",
+    title: "Voyages",
+    description: "A full-stack social media webapp for sharing travel experiences.",
+    image: "/assets/projects/project1.png",
     github: "https://github.com/programerela/voyages-fe",
-    link: "https://ecommerce-live-demo.com",
   },
   {
-    title: "Design Portfolio",
-    description: "A sleek site to showcase my visual work and branding.",
-    image: "/projects/project2.jpg",
-    github: "https://github.com/programerela/portfolio",
-    link: "https://mydesignportfolio.com",
+    title: "Mielle Studio",
+    description: "Frontend for a photography studio with booking features.",
+    image: "/assets/projects/project2.jpg",
+    github: "https://github.com/programerela/MielleFE",
   },
   {
-    title: "Mobile App UI",
-    description: "An intuitive and modern app interface for productivity.",
-    image: "/projects/project3.jpg",
-    github: "https://github.com/programerela/mobile-ui",
-    link: "https://mobileui-app.com",
+    title: "EllsSpells Forum",
+    description: "Beauty and health forum with user profiles and discussions.",
+    image: "/assets/projects/project3.jpg",
+    github: "https://github.com/programerela/EllsSpells",
   },
   {
-    title: "Dashboard System",
-    description: "A data-driven dashboard with user analytics and reports.",
-    image: "/projects/project4.jpg",
-    github: "https://github.com/programerela/dashboard",
-    link: "https://dashboardapp.com",
+    title: "Maison Unique",
+    description: "Website for a furniture store with product listings.",
+    image: "/assets/projects/project4.jpg",
+    github: "https://github.com/programerela/MaisonUnique",
   },
 ];
 
@@ -47,7 +43,7 @@ const Projects = () => {
         scrollTrigger: {
           trigger: containerRef.current,
           start: "top top",
-          end: `+=${projects.length * 150}vh`,
+          end: `+=${projects.length * 200}vh`, // Increase scroll distance for slower scroll
           scrub: true,
           pin: true,
         },
@@ -58,36 +54,52 @@ const Projects = () => {
         const text = textRefs.current[i];
 
         // Animate slide in
-        tl.to(slide, {
-          autoAlpha: 1,
-          duration: 0.6,
-          ease: "power2.out",
-        }, `slide-${i}`);
+        tl.to(
+          slide,
+          {
+            autoAlpha: 1,
+            duration: 0.6,
+            ease: "power2.out",
+          },
+          `slide-${i}`
+        );
 
         // Animate text in
-        tl.to(text, {
-          y: 0,
-          autoAlpha: 1,
-          duration: 0.6,
-          ease: "power2.out",
-        }, `slide-${i}`);
+        tl.to(
+          text,
+          {
+            y: 0,
+            autoAlpha: 1,
+            duration: 0.6,
+            ease: "power2.out",
+          },
+          `slide-${i}`
+        );
 
-        // Hold
-        tl.to({}, { duration: 1.5 });
+        // Hold longer
+        tl.to({}, { duration: 2.5 }); // Increase hold duration
 
         // Animate out (unless it's the last one)
         if (i !== projects.length - 1) {
-          tl.to(text, {
-            y: -50,
-            autoAlpha: 0,
-            duration: 0.6,
-            ease: "power2.in",
-          }, `slide-out-${i}`);
-          tl.to(slide, {
-            autoAlpha: 0,
-            duration: 0.6,
-            ease: "power2.in",
-          }, `slide-out-${i}`);
+          tl.to(
+            text,
+            {
+              y: -50,
+              autoAlpha: 0,
+              duration: 0.6,
+              ease: "power2.in",
+            },
+            `slide-out-${i}`
+          );
+          tl.to(
+            slide,
+            {
+              autoAlpha: 0,
+              duration: 0.6,
+              ease: "power2.in",
+            },
+            `slide-out-${i}`
+          );
         }
       });
     }, containerRef);
@@ -115,9 +127,6 @@ const Projects = () => {
             <h2>{proj.title}</h2>
             <p>{proj.description}</p>
             <div className={styles.buttons}>
-              <a href={proj.link} target="_blank" rel="noopener noreferrer">
-                View Project
-              </a>
               <a href={proj.github} target="_blank" rel="noopener noreferrer">
                 GitHub
               </a>
